@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Datatable Example</title>
+    <!-- Import Jquery script -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <!-- Import Datatable script -->
+    <script type="text/javascript" src="static/scripts/datatables.min.js"></script>
+    <!-- Import Datatable stylesheet -->
+    <link rel="stylesheet" href="static/scripts/datatables.min.css" />
+    <!-- Custom styling to make the table vertical -->
+    <link rel="stylesheet" href="static/scripts/custom.css" />
+</head>
+<body>
+    <!-- Template for table -->
+    <table id="table_example">
+        <thead>
+            <tr></tr>
+        </thead>
+        <tbody>
+            <tr></tr>
+        </tbody>
+    </table>
+</body>
+<script>
+    // Once page is loaded, setup dataTable dynamically
+    $(document).ready( function () {
+        // Load JSON data
+        loadJSON(function(response) {
+            var jsonData = JSON.parse(response);    // Parsing JSON string into object
+            var col = []                    // Col for dataTable
+            var data = []                   // Data for dataTable
+            
+            // Get column names from JSON
+            for (key in jsonData[0]) {
+                col.push({'data': key})
+                // Dynamic add table header
+                let newColHeader = '<th>'+key+'</th>'
+                $('#table_example thead tr').first().append(newColHeader)
+                // Add table body column per header
+                $('#table_example tbody tr').first().append('<td></td>')
+            }
+            // Extract data to dataTable format
+            jsonData.forEach(dataArr => {
+                let tempArr = []
+                for (key in dataArr)
+                    tempArr.push(dataArr[key])
+                data.push(tempArr)
+            });
+
+            // Initial dataTable
+            $('#table_example').DataTable({
+                data: data, // Insert preprocessed data
+                column: col, // Insert column names
+                paging: false,
+                searching: false,
+                autoWidth: false
+            });
+        });
+    } );
+
+    // Src: https://www.geekstrick.com/load-json-file-locally-using-pure-javascript/
+    // Author: https://www.geekstrick.com/author/geekstrick/
+    // Feature: Load JSON file locally using pure Javascript
+    function loadJSON(callback) {   
+        var xobj = new XMLHttpRequest();
+        xobj.overrideMimeType("application/json");
+        xobj.open('GET', "{{url_for('static', filename='data/sample.json')}}", true);
+        xobj.onreadystatechange = function () {
+            if (xobj.readyState == 4 && xobj.status == "200") {
+                // Required use of an anonymous callback as .open will NOT return a value but simply returns undefined in asynchronous mode
+                callback(xobj.responseText);
+            }
+        };
+        xobj.send(null);  
+    }
+</script>
+</html>
