@@ -1,0 +1,14 @@
+{
+    "header" : [
+        {"data": "A"},
+        {"data": "B"},
+        {"data": "C"},
+        {"data": "D"}
+    ],
+    "data": [
+        ["dataA", "dataB", "dataC", "dataD"],
+        ["dataA", "dataB", "dataC", "dataD"],
+        ["dataA", "dataB", "dataC", "dataD"],
+        ["dataA", "dataB", "dataC", "dataD"]
+    ]
+}

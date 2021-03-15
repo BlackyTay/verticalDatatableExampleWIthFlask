@@ -1,17 +1,30 @@
 [
     {
-        "hostname":"Localhost1",
-        "memory":"15G",
-        "disk":"180GB",
-        "cpuUsage":"12.50",
-        "timestamp":"2021-03-15 03:02:24 PM"
+        "A":"dataA",
+        "B":"dataB",
+        "C":"dataC",
+        "D":"dataD"
     },
 
     {
-        "hostname":"Localhost2",
-        "memory":"7.9G",
-        "disk":"50GB",
-        "cpuUsage":"7.50",
-        "timestamp":"2021-03-15 03:02:34 PM"
+        "A":"dataA",
+        "B":"dataB",
+        "C":"dataC",
+        "D":"dataD"
+    },
+
+    {
+        "A":"dataA",
+        "B":"dataB",
+        "C":"dataC",
+        "D":"dataD"
+    },
+
+    {
+        "A":"dataA",
+        "B":"dataB",
+        "C":"dataC",
+        "D":"dataD"
     }
+
 ]
